@@ -7,7 +7,6 @@ let snake = [{ x: 9 * box, y: 10 * box }];
 let food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
 let score = 0;
 let direction;
-
 let game;
 
 function drawSnake() {
@@ -42,43 +41,4 @@ function moveSnake() {
 }
 
 function checkCollision() {
-	if (snake[0].x < 0 || snake[0].x > 19 * box || snake[0].y < 0 || snake[0].y > 19 * box) {
-		clearInterval(game);
-		document.getElementById("start-button").style.display = "block";
-		return;
-	}
-	for (let i = 1; i < snake.length; i++) {
-		if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
-			clearInterval(game);
-			document.getElementById("start-button").style.display = "block";
-			return;
-		}
-	}
-}
-
-function gameLoop() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	drawSnake();
-	drawFood();
-	drawScore();
-	moveSnake();
-	checkCollision();
-}
-
-function startGame() {
-	document.getElementById("start-button").style.display = "none";
-	snake = [{ x: 9 * box, y: 10 * box }];
-	food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
-	score = 0;
-	direction = "RIGHT";
-	game = setInterval(gameLoop, 100);
-}
-
-document.addEventListener("keydown", function (event) {
-	if (event.keyCode === 37 && direction !== "RIGHT") direction = "LEFT";
-	if (event.keyCode === 38 && direction !== "DOWN") direction = "UP";
-	if (event.keyCode === 39 && direction !== "LEFT") direction = "RIGHT";
-	if (event.keyCode === 40 && direction !== "UP") direction = "DOWN";
-});
-
-document.getElementById("start-button").addEventListener("click", startGame);
+	if (snake[0].x < 0 || snake[0].x > 19 * box || snake[0].y < 0 ||
